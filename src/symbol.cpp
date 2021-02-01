@@ -19,12 +19,36 @@ void Expression::print() const
    cout << "Result eval: " << eval() << endl;
 }
 
-ExprBinary::~ExprBinary() {
-   delete(operand1);
-   delete(operand2);
+ExprBinary::~ExprBinary()
+{
+   delete (operand1);
+   delete (operand2);
 }
 
-void ExprBinary::print() const {
+void ExprBinary::print() const
+{
    Expression::print();
    cout << "Binary expression" << endl;
+}
+
+double ExprPlus::eval() const
+{
+   return operand1->eval() + operand2->eval();
+}
+
+void ExprPlus::print() const
+{
+   ExprBinary::print();
+   cout << "Addition" << endl;
+}
+
+double ExprMult::eval() const
+{
+   return operand1->eval() * operand2->eval();
+}
+
+void ExprMult::print() const
+{
+   ExprBinary::print();
+   cout << "Multiplication" << endl;
 }

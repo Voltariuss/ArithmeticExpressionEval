@@ -63,3 +63,21 @@ protected:
    Expression *operand1;
    Expression *operand2;
 };
+
+class ExprPlus : public ExprBinary
+{
+public:
+   ExprPlus(Expression *_operand1, Expression *_operand2) : ExprBinary(_operand1, _operand2) {}
+   ~ExprPlus() {}
+   double eval() const;
+   void print() const;
+};
+
+class ExprMult : public ExprBinary
+{
+public:
+   ExprMult(Expression *_operand1, Expression *_operand2) : ExprBinary(_operand1, _operand2) {}
+   ~ExprMult() {}
+   double eval() const;
+   void print() const;
+};
