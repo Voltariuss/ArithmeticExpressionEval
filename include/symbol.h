@@ -50,3 +50,16 @@ public:
    virtual double eval() const = 0;
    virtual void print() const;
 };
+
+class ExprBinary : public Expression
+{
+public:
+   ExprBinary(Expression *_operand1, Expression *_operand2) : Expression(), operand1(_operand1), operand2(_operand2) {}
+   virtual ~ExprBinary();
+   virtual double eval() const = 0;
+   virtual void print() const;
+
+protected:
+   Expression *operand1;
+   Expression *operand2;
+};

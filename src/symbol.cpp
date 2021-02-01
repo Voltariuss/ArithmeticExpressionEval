@@ -18,3 +18,13 @@ void Expression::print() const
    Symbol::print();
    cout << "Result eval: " << eval() << endl;
 }
+
+ExprBinary::~ExprBinary() {
+   delete(operand1);
+   delete(operand2);
+}
+
+void ExprBinary::print() const {
+   Expression::print();
+   cout << "Binary expression" << endl;
+}
