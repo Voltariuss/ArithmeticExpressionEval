@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../include/lexer.h"
 
 Symbol *Lexer::read()
@@ -52,4 +53,13 @@ Symbol *Lexer::read()
 void Lexer::next()
 {
    buffer = nullptr;
+}
+
+void Lexer::print() const
+{
+   cout << "Lexer:" << endl;
+   cout << "stream=" << stream << endl;
+   cout << "head=" << head << endl;
+   cout << "buffer=" << endl;
+   this->buffer->print();
 }
