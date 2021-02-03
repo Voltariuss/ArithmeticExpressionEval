@@ -76,7 +76,7 @@ bool State3::transition(Automate *automate, Symbol *symbol) const
     case MULT: {}
     case CLOSEPAR: {}
     case END: {
-      automate->reduction(1, symbol);
+      automate->reduction(1, new ExprNumber(((Number *) symbol)->getValue()));
     }
   }
   return false;
