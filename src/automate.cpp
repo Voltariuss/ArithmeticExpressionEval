@@ -59,6 +59,7 @@ void Automate::run()
   do
   {
     symbol = this->lexer->read();
+    symbol->print();
     isAccepted = this->states->top()->transition(this, symbol);
     this->print();
   } while (!isAccepted && symbol->getId() != ERROR);
@@ -74,18 +75,16 @@ void Automate::run()
 
 void Automate::print() const
 {
+  cout << "----------" << endl;
   cout << "Automate:" << endl;
-  cout << "symbols(top only)=" << endl;
+  cout << "symbols(top only): size=" << this->symbols->size() << endl;
   if (this->symbols->size() > 0)
   {
     this->symbols->top()->print();
   }
-  else
-  {
-    cout << "empty stack" << endl;
-  }
-  cout << "states(top only)=" << endl;
+  cout << "states(top only): size=" << this->states->size() << endl;
   this->states->top()->print();
   cout << "lexer=" << endl;
   this->lexer->print();
+  cout << endl;
 }

@@ -6,17 +6,16 @@ int main(void)
 {
    string chain("(1+34)*123");
 
-   Lexer l(chain);
+   Lexer lexer(chain);
 
-   // Test
-   Symbol *s;
-   while ((s = l.read())->getId() != END)
+   Symbol *symbol;
+   while ((symbol = lexer.read())->getId() != END)
    {
-      s->print();
-      l.next();
+      symbol->print();
+      cout << endl;
+      lexer.next();
    }
 
-   // Resolve
    Automate automate(chain);
    automate.print();
    automate.run();

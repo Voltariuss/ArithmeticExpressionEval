@@ -76,7 +76,8 @@ bool State3::transition(Automate *automate, Symbol *symbol) const
     case MULT: {}
     case CLOSEPAR: {}
     case END: {
-      automate->reduction(1, new ExprNumber(((Number *) symbol)->getValue()));
+      Number *number = (Number *) automate->popSymbol();
+      automate->reduction(1, new ExprNumber(number->getValue()));
     }
   }
   return false;
@@ -202,7 +203,17 @@ void State8::print() const {
 
 bool State9::transition(Automate *automate, Symbol *symbol) const
 {
-  // TODO
+  switch (symbol->getId()) {
+    case PLUS: {}
+    case MULT: {}
+    case CLOSEPAR: {}
+    case END: {
+      automate->popAndDestroySymbol();
+      Expression *expression = (Expression *) automate->popSymbol();
+      automate->popAndDestroySymbol();
+      automate->reduction(3, expression);
+    }
+  }
   return false;
 }
 
