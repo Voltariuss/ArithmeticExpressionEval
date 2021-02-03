@@ -5,6 +5,10 @@
 bool State0::transition(Automate *automate, Symbol *symbol) const
 {
   switch (symbol->getId()) {
+    case NUMBER: {
+      automate->shift(symbol, new State3());
+      break;
+    }
     case OPENPAR: {
       automate->shift(symbol, new State2());
       break;
@@ -34,7 +38,6 @@ bool State1::transition(Automate *automate, Symbol *symbol) const
     }
     case END: {
       return true;
-      break;
     }
   }
   return false;
@@ -47,6 +50,10 @@ void State1::print() const {
 bool State2::transition(Automate *automate, Symbol *symbol) const
 {
   switch (symbol->getId()) {
+    case NUMBER: {
+      automate->shift(symbol, new State3());
+      break;
+    }
     case OPENPAR: {
       automate->shift(symbol, new State2());
       break;
@@ -62,9 +69,30 @@ void State2::print() const {
   cout << "State2" << endl;
 }
 
+bool State3::transition(Automate *automate, Symbol *symbol) const
+{
+  switch (symbol->getId()) {
+    case PLUS: {}
+    case MULT: {}
+    case CLOSEPAR: {}
+    case END: {
+      automate->reduction(1, symbol);
+    }
+  }
+  return false;
+}
+
+void State3::print() const {
+  cout << "State3" << endl;
+}
+
 bool State4::transition(Automate *automate, Symbol *symbol) const
 {
   switch (symbol->getId()) {
+    case NUMBER: {
+      automate->shift(symbol, new State3());
+      break;
+    }
     case OPENPAR: {
       automate->shift(symbol, new State2());
       break;
@@ -84,6 +112,10 @@ void State4::print() const {
 bool State5::transition(Automate *automate, Symbol *symbol) const
 {
   switch (symbol->getId()) {
+    case NUMBER: {
+      automate->shift(symbol, new State3());
+      break;
+    }
     case OPENPAR: {
       automate->shift(symbol, new State2());
       break;

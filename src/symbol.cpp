@@ -7,21 +7,27 @@ void Symbol::print() const
    cout << "Symbol id: " << symbolTags[id] << endl;
 }
 
+void Number::print() const
+{
+   Symbol::print();
+   cout << "Value=" << this->value << endl;
+}
+
 void Expression::print() const
 {
    Symbol::print();
-   cout << "Result eval: " << eval() << endl;
+   cout << "Expression eval=" << eval() << endl;
 }
 
-double Number::eval() const
+double ExprNumber::eval() const
 {
    return value;
 }
 
-void Number::print() const
+void ExprNumber::print() const
 {
-   Symbol::print();
-   cout << "Constant value: " << value << endl;
+   Expression::print();
+   cout << "Constant value" << endl;
 }
 
 ExprBinary::~ExprBinary()

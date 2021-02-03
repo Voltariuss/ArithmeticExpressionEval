@@ -8,13 +8,14 @@ enum SymbolId
    EXPR,
    OPENPAR,
    CLOSEPAR,
+   NUMBER,
    PLUS,
    MULT,
    END,
    ERROR
 };
 
-const string symbolTags[] = {"EXPR", "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "END", "ERROR"};
+const string symbolTags[] = {"EXPR", "OPENPAR", "CLOSEPAR", "NUMBER", "PLUS", "MULT", "END", "ERROR"};
 
 class Symbol
 {
@@ -30,6 +31,18 @@ protected:
    bool terminal;
 };
 
+class Number : public Symbol
+{
+public:
+   Number(int _value) : Symbol(NUMBER) {}
+   ~Number() {}
+   int getValue() const { return value; }
+   void print() const;
+
+protected:
+   int value;
+};
+
 class Expression : public Symbol
 {
 public:
@@ -39,11 +52,11 @@ public:
    virtual void print() const;
 };
 
-class Number : public Expression
+class ExprNumber : public Expression
 {
 public:
-   Number(int _value) : Expression(), value(_value) {}
-   ~Number() {}
+   ExprNumber(int _value) : Expression(), value(_value) {}
+   ~ExprNumber() {}
    double eval() const;
    void print() const;
 

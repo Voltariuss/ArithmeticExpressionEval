@@ -45,7 +45,8 @@ Symbol *Automate::popSymbol()
   return symbol;
 }
 
-void Automate::popAndDestroySymbol() {
+void Automate::popAndDestroySymbol()
+{
   Symbol *symbol = this->symbols->top();
   this->symbols->pop();
   delete (symbol);
@@ -53,14 +54,36 @@ void Automate::popAndDestroySymbol() {
 
 void Automate::run()
 {
-  // TODO
+  bool isAccepted;
+  Symbol *symbol;
+  do
+  {
+    symbol = this->lexer->read();
+    isAccepted = this->states->top()->transition(this, symbol);
+    this->print();
+  } while (!isAccepted && symbol->getId() != ERROR);
+
+  if (isAccepted)
+  {
+    cout << "Result=" << this->symbols->top() << endl;
+  } else
+  {
+    cout << "Error during the execution" << endl;
+  }
 }
 
 void Automate::print() const
 {
   cout << "Automate:" << endl;
   cout << "symbols(top only)=" << endl;
-  this->symbols->top()->print();
+  if (this->symbols->size() > 0)
+  {
+    this->symbols->top()->print();
+  }
+  else
+  {
+    cout << "empty stack" << endl;
+  }
   cout << "states(top only)=" << endl;
   this->states->top()->print();
   cout << "lexer=" << endl;

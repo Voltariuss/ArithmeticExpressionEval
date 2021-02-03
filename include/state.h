@@ -42,6 +42,15 @@ public:
   void print() const;
 };
 
+class State3 : public State
+{
+public:
+  State3() : State() {}
+  ~State3() {}
+  bool transition(Automate *automate, Symbol *symbol) const;
+  void print() const;
+};
+
 class State4 : public State
 {
 public:
