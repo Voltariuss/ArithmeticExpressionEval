@@ -34,7 +34,7 @@ protected:
 class Number : public Symbol
 {
 public:
-   Number(int _value) : Symbol(NUMBER) {}
+   Number(int _value) : Symbol(NUMBER), value(_value) {}
    ~Number() {}
    int getValue() const { return value; }
    void print() const;
