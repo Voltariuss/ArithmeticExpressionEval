@@ -15,6 +15,8 @@ public:
   ~Automate();
   void shift(Symbol *symbol, State *e);
   void reduction(int n, Symbol *symbol);
+  Symbol *popSymbol();
+  void popAndDestroySymbol();
   void run();
   void print() const;
 

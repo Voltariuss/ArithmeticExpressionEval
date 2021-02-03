@@ -21,7 +21,7 @@ void Automate::shift(Symbol *symbol, State *state)
 {
   this->symbols->push(symbol);
   this->states->push(state);
-  if (!symbol->isTerminal())
+  if (symbol->isTerminal())
   {
     this->lexer->next();
   }
@@ -38,12 +38,26 @@ void Automate::reduction(int n, Symbol *symbol)
   this->states->top()->transition(this, symbol);
 }
 
+Symbol *Automate::popSymbol()
+{
+  Symbol *symbol = this->symbols->top();
+  this->symbols->pop();
+  return symbol;
+}
+
+void Automate::popAndDestroySymbol() {
+  Symbol *symbol = this->symbols->top();
+  this->symbols->pop();
+  delete (symbol);
+}
+
 void Automate::run()
 {
   // TODO
 }
 
-void Automate::print() const{
+void Automate::print() const
+{
   cout << "Automate:" << endl;
   cout << "symbols(top only)=" << endl;
   this->symbols->top()->print();
