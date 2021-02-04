@@ -61,9 +61,12 @@ void Lexer::print() const
    cout << "stream=" << stream << endl;
    cout << "head=" << head << endl;
    cout << "buffer=" << endl;
-   if (this->buffer) {
+   if (this->buffer)
+   {
       this->buffer->print();
-   } else {
+   }
+   else
+   {
       cout << "null" << endl;
    }
 }

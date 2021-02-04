@@ -66,8 +66,13 @@ void Automate::run()
 
   if (isAccepted)
   {
-    cout << "Result=" << this->symbols->top() << endl;
-  } else
+    Expression *expression = (Expression *)this->symbols->top();
+    cout << "================" << endl;
+    cout << "     RESULT" << endl;
+    cout << "================" << endl;
+    cout << this->lexer->getStream() << "=" << expression->eval() << endl;
+  }
+  else
   {
     cout << "Error during the execution" << endl;
   }

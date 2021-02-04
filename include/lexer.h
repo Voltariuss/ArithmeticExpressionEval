@@ -11,6 +11,7 @@ public:
    ~Lexer() {}
    Symbol *read();
    void next();
+   string getStream() const { return this->stream; }
    void print() const;
 
 protected:

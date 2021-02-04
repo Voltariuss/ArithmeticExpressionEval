@@ -2,23 +2,23 @@
 #include "../include/lexer.h"
 #include "../include/automate.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
-   string chain("(1+34)*123");
-
-   Lexer lexer(chain);
-
-   Symbol *symbol;
-   while ((symbol = lexer.read())->getId() != END)
+   if (argc >= 2)
    {
-      symbol->print();
-      cout << endl;
-      lexer.next();
+      cout << "Error: invalid number of args (max 2 allowed)" << endl;
+      return EXIT_FAILURE;
    }
-
+   string chain;
+   if (argc == 1)
+   {
+      chain = "(1+34)*123";
+   }
+   else if (argc == 2)
+   {
+      chain = argv[1];
+   }
    Automate automate(chain);
-   automate.print();
    automate.run();
-   automate.print();
-   return 0;
+   return EXIT_SUCCESS;
 }

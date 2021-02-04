@@ -9,7 +9,8 @@
 using namespace std;
 
 class State;
-class Automate {
+class Automate
+{
 public:
   Automate(const string chain);
   ~Automate();
