@@ -27,7 +27,7 @@ void Automate::shift(Symbol *symbol, State *state)
   }
 }
 
-void Automate::reduction(int n, Symbol *symbol)
+void Automate::reduction(int n, Symbol *symbol) throw()
 {
   for (int i = 0; i < n; i++)
   {
@@ -56,25 +56,25 @@ void Automate::run()
 {
   bool isAccepted;
   Symbol *symbol;
-  do
+  try
   {
-    symbol = this->lexer->read();
-    symbol->print();
-    isAccepted = this->states->top()->transition(this, symbol);
-    this->print();
-  } while (!isAccepted && symbol->getId() != ERROR);
+    do
+    {
+      symbol = this->lexer->read();
+      symbol->print();
+      isAccepted = this->states->top()->transition(this, symbol);
+      this->print();
+    } while (!isAccepted);
 
-  if (isAccepted)
-  {
     Expression *expression = (Expression *)this->symbols->top();
     cout << "================" << endl;
     cout << "     RESULT" << endl;
     cout << "================" << endl;
     cout << this->lexer->getStream() << "=" << expression->eval() << endl;
   }
-  else
+  catch (const string &exception)
   {
-    cout << "Error during the execution" << endl;
+    cerr << "Error: wrong token found (expected \"" + exception + "\")" << endl;
   }
 }
 

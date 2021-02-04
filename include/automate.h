@@ -15,7 +15,7 @@ public:
   Automate(const string chain);
   ~Automate();
   void shift(Symbol *symbol, State *e);
-  void reduction(int n, Symbol *symbol);
+  void reduction(int n, Symbol *symbol) throw();
   Symbol *popSymbol();
   void popAndDestroySymbol();
   void run();
