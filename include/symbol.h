@@ -22,8 +22,8 @@ class Symbol
 public:
    Symbol(int _id, bool _terminal = true) : id(_id), terminal(_terminal) {}
    virtual ~Symbol() {}
-   int getId() const { return id; }
-   bool isTerminal() const { return terminal; }
+   int getId() const { return this->id; }
+   bool isTerminal() const { return this->terminal; }
    virtual void print() const;
 
 protected:
@@ -36,7 +36,7 @@ class Number : public Symbol
 public:
    Number(int _value) : Symbol(NUMBER), value(_value) {}
    ~Number() {}
-   int getValue() const { return value; }
+   int getValue() const { return this->value; }
    void print() const;
 
 protected:

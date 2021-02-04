@@ -16,12 +16,12 @@ void Number::print() const
 void Expression::print() const
 {
    Symbol::print();
-   cout << "Expression eval=" << eval() << endl;
+   cout << "Expression eval=" << this->eval() << endl;
 }
 
 double ExprNumber::eval() const
 {
-   return value;
+   return this->value;
 }
 
 void ExprNumber::print() const
@@ -32,8 +32,8 @@ void ExprNumber::print() const
 
 ExprBinary::~ExprBinary()
 {
-   delete (operand1);
-   delete (operand2);
+   delete (this->operand1);
+   delete (this->operand2);
 }
 
 void ExprBinary::print() const
@@ -44,7 +44,7 @@ void ExprBinary::print() const
 
 double ExprPlus::eval() const
 {
-   return operand1->eval() + operand2->eval();
+   return this->operand1->eval() + this->operand2->eval();
 }
 
 void ExprPlus::print() const
@@ -55,7 +55,7 @@ void ExprPlus::print() const
 
 double ExprMult::eval() const
 {
-   return operand1->eval() * operand2->eval();
+   return this->operand1->eval() * this->operand2->eval();
 }
 
 void ExprMult::print() const

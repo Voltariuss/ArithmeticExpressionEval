@@ -3,63 +3,63 @@
 
 Symbol *Lexer::read()
 {
-   if (!buffer)
+   if (!this->buffer)
    {
-      if (head == stream.length())
-         buffer = new Symbol(END);
+      if (this->head == this->stream.length())
+         this->buffer = new Symbol(END);
       else
       {
-         switch (stream[head])
+         switch (this->stream[this->head])
          {
          case '(':
-            buffer = new Symbol(OPENPAR);
-            head++;
+            this->buffer = new Symbol(OPENPAR);
+            this->head++;
             break;
          case ')':
-            buffer = new Symbol(CLOSEPAR);
-            head++;
+            this->buffer = new Symbol(CLOSEPAR);
+            this->head++;
             break;
          case '*':
-            buffer = new Symbol(MULT);
-            head++;
+            this->buffer = new Symbol(MULT);
+            this->head++;
             break;
          case '+':
-            buffer = new Symbol(PLUS);
-            head++;
+            this->buffer = new Symbol(PLUS);
+            this->head++;
             break;
          default:
-            if (stream[head] <= '9' && stream[head] >= '0')
+            if (this->stream[this->head] <= '9' && this->stream[this->head] >= '0')
             {
-               int result = stream[head] - '0';
+               int result = this->stream[this->head] - '0';
                int i = 1;
-               while (stream[head + i] <= '9' && stream[head + i] >= '0')
+               while (this->stream[this->head + i] <= '9' && this->stream[this->head + i] >= '0')
                {
-                  result = result * 10 + (stream[head + i] - '0');
+                  result = result * 10 + (this->stream[this->head + i] - '0');
                   i++;
                }
-               head = head + i;
-               buffer = new Number(result);
+               this->head = this->head + i;
+               this->buffer = new Number(result);
             }
             else
             {
-               buffer = new Symbol(ERROR);
+               this->buffer = new Symbol(ERROR);
             }
          }
       }
    }
-   return buffer;
+   return this->buffer;
 }
 
 void Lexer::next()
 {
-   buffer = nullptr;
+   this->buffer = nullptr;
 }
 
 void Lexer::print() const
 {
    cout << "Lexer:" << endl;
-   cout << "stream=" << stream << endl;
-   cout << "head=" << head << endl;
+   cout << "stream=" << this->stream << endl;
+   cout << "head=" << this->head << endl;
    cout << "buffer=" << endl;
    if (this->buffer)
    {
