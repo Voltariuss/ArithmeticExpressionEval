@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-O2
-SRC=$(wildcard src/*.cpp) $(wildcard include/*.cpp)
+SRC=$(wildcard src/*.cpp)
 
 main: $(SRC)
 	$(CC) -o $@ $^ $(CFLAGS)
