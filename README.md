@@ -3,6 +3,8 @@ A basic arithmetic expression evaluation with parser
 
 ## Use
 Command syntax: ./main.exe [expression]
+
+BNF notation:
   - \<expression\> ::= \<constant\> | \<expression\> "+" \<expression\> | \<expression\> "*" \<expression\> | "(" \<expression\> ")"
   - \<constant\> ::= [0-9]+
 
