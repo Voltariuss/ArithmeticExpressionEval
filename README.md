@@ -1,5 +1,5 @@
 # ArithmeticExpressionEval
-A basic arithmetic expression evaluation with parser
+A basic arithmetic expression evaluation with parser.
 
 ## Use
 Command syntax: ./main.exe [expression]
